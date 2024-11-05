@@ -38,7 +38,7 @@ For Windows use a CMake generator like "NMake Makefiles" or "Visual Studio [...]
 or
     cmake -G "Visual Studio 15 2017" -DCMAKE_BUILD_TYPE=Release -DCMAKE_GENERATOR_PLATFORM=x64 <git_root_dir>
     cmake --build ./
-    cmake --build ./ --target install
+    cmake --build ./ --target install (or open .sln file with Visual Studio 2017, then build with Debug Mode, Release Mode)
     
 To cross compile libONVIF for Android use one of the conan profiles from "buildProfiles" matching your host machine and target arch.
 E.g.: To compile libONVIF for Android Armv8 arch on a Linux host run the following command in your git root dir:

@@ -1,12 +1,15 @@
 INSTALL TOOL
 
+INSTALL TOOL
+
 1. Install Visual Studio 2017
 2. Install CMake 3.22.6
 3. Install Python 3 (version < 3.11.x)
-4. Install conan 1.65.0.0: pip install conan==1.65.0.0
-5. Upgrading PyYaml to the newer version:  pip install --upgrade PyYaml
-6. Install conan 1.65 for Windows, download from. conan.io
-7. Modify: [requires = "Qt/5.12.10@tereius/stable"] in conanfile.py file at <root_dir_git>
+4. Install Window SDK version 8.1
+5. Install conan 1.65.0.0: pip install conan==1.65.0.0
+6. Upgrading PyYaml to the newer version:  pip install --upgrade PyYaml
+7. Install conan 1.65 for Windows, download from. conan.io
+8. Modify: [requires = "Qt/5.12.10@tereius/stable"] in conanfile.py file at <root_dir_git>
 
 BUILD
 1. To build the dependencies yourself you have to add one conan repositories first:

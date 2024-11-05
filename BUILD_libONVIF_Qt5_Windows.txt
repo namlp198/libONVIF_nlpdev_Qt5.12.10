@@ -1,0 +1,32 @@
+INSTALL TOOL
+
+1. Install Visual Studio 2017
+2. Install CMake 3.22.6
+3. Install Python 3 (version < 3.11.x)
+4. Install conan 1.65.0.0: pip install conan==1.65.0.0
+5. Upgrading PyYaml to the newer version:  pip install --upgrade PyYaml
+6. Install conan 1.65 for Windows, download from. conan.io
+7. Modify: [requires = "Qt/5.12.10@tereius/stable"] in conanfile.py file at <root_dir_git>
+
+BUILD
+1. To build the dependencies yourself you have to add one conan repositories first:
+	Open conan cmd, type: conan remote add tereius https://conan.privatehive.de/artifactory/api/conan/public-conan
+2. After that just run following command in the git root dir (where the conanfile.py is located):
+	conan install ./ -s build_type=Release --build missing
+	
+***NOTE: with Qt 5.12.10 when run above the command will occur error because "url" parameter "C:\Users\[USER_NAME]\.conan\data\Qt\5.12.10\tereius\stable\export\conanfile.py" not valid.
+		 For resolve this issue, follow the steps:
+		 2.1. Open the file: "C:\Users\[USER_NAME]\.conan\profiles\default.file", modify [compiler.version=17] -> [compiler.version=15], then Save file.
+		 2.2. let's find to "source" function, modify "url" parameter to: url = "http://download.qt.io/archive/qt/{0}/{1}/single/qt-everywhere-src-{1}".format(self.version[:self.version.rfind('.')], self.version)
+		 2.3. Run again the command at step 2.
+		 
+3. Create a (build) directory (preferably outside the git root dir).
+
+4. For Windows use a CMake generator like "NMake Makefiles" or "Visual Studio [...]" e.g.:
+
+    cd <build_dir>
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_GENERATOR_PLATFORM=x64 <git_root_dir> 
+	or 
+	cmake -G "Visual Studio 15 2017" -DCMAKE_BUILD_TYPE=Release -DCMAKE_GENERATOR_PLATFORM=x64 <git_root_dir>
+    cmake --build ./
+    cmake --build ./ --target install (or open .sln file with Visual Studio 2017, then build with Debug Mode, Release Mode)
